@@ -1,4 +1,5 @@
 using Positions;
+using Utilities;
 
 namespace Errors
 {
@@ -22,6 +23,7 @@ namespace Errors
             string result = "Traceback [ITPL]:";
             result += $"\n  File '{this.start.fileName}', line {this.start.line + 1}";
             result += $"\n{this.name}: {this.details}";
+            result += "\n" + Function.ArrowToError(this.start.fileText, this.start, this.end);
             return result;
         }
     }
@@ -31,6 +33,14 @@ namespace Errors
         public UnknownCharError(string details, Position start, Position end): base("UnkonwnCharError", details, start, end)
         {
             this.details = $"unknown character '{this.details}' found";
+        }
+    }
+
+    public class SyntaxError : Error
+    {
+        public SyntaxError(string details, Position start, Position end): base("SyntaxError", details, start, end)
+        {
+
         }
     }
 }
