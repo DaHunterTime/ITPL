@@ -37,8 +37,8 @@ namespace InteractiveShell
             if(tokens.Count == 1 && tokens[0].type == Token.TokenType.TokenError) return new ErrorNode(tokens[0]);
 
             var parser = new Parser(tokens);
-            Node syntaxTree = parser.Parse();
-            return syntaxTree;
+            ParseResult syntaxTree = parser.Parse();
+            return syntaxTree.node;
         }
     }
 }
