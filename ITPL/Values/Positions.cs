@@ -19,12 +19,12 @@ namespace Positions
 
         public Position Advance(char? currentChar)
         {
-            this.index += 1;
-            this.column += 1;
+            this.index++;
+            this.column++;
 
             if(currentChar == '\n')
             {
-                this.line += 1;
+                this.line++;
                 this.column = 0;
             }
 
