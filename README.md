@@ -1,7 +1,7 @@
 # Interpreted Test Programming Language
 **I**nterpreted **T**est **P**rogramming **L**anguage also known as **ITPL**.
 
-Current version: alpha 0.0.1
+Current version: alpha 0.1.1
 
 ## About
 ITPL is just as it's name says, my attempt at creating an interpreted programming language in C#.
@@ -9,6 +9,10 @@ ITPL is just as it's name says, my attempt at creating an interpreted programmin
 ## Current Features
 Currently ITPL is still in it's infancy, that means it does **nothing** (except print valid tokens, but 
 that doesn't count) yet.
+
+Currently implemented:
+* Lexer
+* Parser
 
 ## Compatibility
 It should be able to run on Linux, MacOS and Windows, provided that you have a C# compiler for .NET 5.0 installed in your machine.
