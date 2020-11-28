@@ -87,12 +87,38 @@ namespace Parsing
         {
             var result = new ParseResult();
             Token token = this.currentToken;
+            Token.TokenType[] checkOp = {Token.TokenType.TokenPlus, Token.TokenType.TokenMinus};
             Token.TokenType[] numberTypes = {Token.TokenType.TokenInt, Token.TokenType.TokenDecimal};
 
-            if(numberTypes.Contains(this.currentToken.type))
+            if(checkOp.Contains(this.currentToken.type))
+            {
+                result.Register(this.Advance());
+                Node factor = result.Register(this.Factor());
+                if(result.error) return result;
+                return result.Success(new UnaryOpNode(token, factor));
+            }
+            else if(numberTypes.Contains(this.currentToken.type))
             {
                 result.Register(this.Advance());
                 return result.Success(new NumberNode(token));
+            }
+            else if(token.type == Token.TokenType.TokenLPar)
+            {
+                result.Register(this.Advance());
+                Node expr = result.Register(this.Expr());
+                if(result.error) return result;
+
+                if(this.currentToken.type == Token.TokenType.TokenRPar)
+                {
+                    result.Register(this.Advance());
+                    return result.Success(expr);
+                }
+                else
+                {
+                    var missingPar = new SyntaxError("expected a ')'", token.start, token.end);
+                    var missingParToken = new Token(Token.TokenType.TokenError, missingPar, missingPar.start, missingPar.end);
+                    return result.Failure(new ErrorNode(missingParToken));
+                }
             }
 
             var error = new SyntaxError("expected a number", token.start, token.end);
