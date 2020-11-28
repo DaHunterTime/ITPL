@@ -8,7 +8,7 @@ ITPL is just as it's name says, my attempt at creating an interpreted programmin
 
 ## Current Features
 Currently ITPL is still in it's infancy, that means it does **nothing** (except print valid tokens, but 
-that doesn't count).
+that doesn't count) yet.
 
 ## Compatibility
 It should be able to run on Linux, MacOS and Windows, provided that you have a C# compiler installed in 
