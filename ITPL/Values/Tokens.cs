@@ -1,5 +1,7 @@
 using System;
 
+using Positions;
+
 namespace Tokens
 {
     public class Token
@@ -14,21 +16,38 @@ namespace Tokens
             TokenDiv,
             TokenLPar,
             TokenRPar,
-            TokenError
+            TokenError,
+            TokenEOF
         }
 
         public dynamic value;
         public TokenType type;
+        public Position start;
+        public Position end;
 
-        public Token(TokenType type, dynamic value)
+        public Token(TokenType type, dynamic value, Position start = null, Position end = null)
         {
             this.value = value;
             this.type = type;
+            if(start != null) this.start = start.Copy();
+            if(end != null) this.end = end;
+            else
+            {
+                this.end = this.start.Copy();
+                this.end.Advance(null);
+            }
         }
 
-        public Token(TokenType type)
+        public Token(TokenType type, Position start = null, Position end = null)
         {
             this.type = type;
+            if(start != null) this.start = start.Copy();
+            if(end != null) this.end = end;
+            else
+            {
+                this.end = this.start.Copy();
+                this.end.Advance(null);
+            }
         }
 
         public override string ToString()

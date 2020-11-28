@@ -38,27 +38,27 @@ namespace Lexing
                 switch(this.currentChar)
                 {
                     case '+':
-                        tokens.Add(new Token(Token.TokenType.TokenPlus));
+                        tokens.Add(new Token(Token.TokenType.TokenPlus, start:this.pos));
                         this.Advance();
                         break;
                     case '-':
-                        tokens.Add(new Token(Token.TokenType.TokenMinus));
+                        tokens.Add(new Token(Token.TokenType.TokenMinus, start:this.pos));
                         this.Advance();
                         break;
                     case '*':
-                        tokens.Add(new Token(Token.TokenType.TokenMul));
+                        tokens.Add(new Token(Token.TokenType.TokenMul, start:this.pos));
                         this.Advance();
                         break;
                     case '/':
-                        tokens.Add(new Token(Token.TokenType.TokenDiv));
+                        tokens.Add(new Token(Token.TokenType.TokenDiv, start:this.pos));
                         this.Advance();
                         break;
                     case '(':
-                        tokens.Add(new Token(Token.TokenType.TokenLPar));
+                        tokens.Add(new Token(Token.TokenType.TokenLPar, start:this.pos));
                         this.Advance();
                         break;
                     case ')':
-                        tokens.Add(new Token(Token.TokenType.TokenRPar));
+                        tokens.Add(new Token(Token.TokenType.TokenRPar, start:this.pos));
                         this.Advance();
                         break;
                     default:
@@ -82,6 +82,7 @@ namespace Lexing
                 }
             }
 
+            tokens.Add(new Token(Token.TokenType.TokenEOF, start:this.pos));
             return tokens;
         }
 
@@ -89,6 +90,7 @@ namespace Lexing
         {
             string numberStr = "";
             int dotCount = 0;
+            Position start = this.pos.Copy();
 
             while(this.currentChar != null && (Constant.Digits + '.').Contains(Convert.ToChar(this.currentChar)))
             {
@@ -106,8 +108,8 @@ namespace Lexing
                 this.Advance();
             }
 
-            if(dotCount == 0) return new Token(Token.TokenType.TokenInt, Int32.Parse(numberStr));
-            else return new Token(Token.TokenType.TokenDecimal, Double.Parse(numberStr));
+            if(dotCount == 0) return new Token(Token.TokenType.TokenInt, Int32.Parse(numberStr), start, this.pos);
+            else return new Token(Token.TokenType.TokenDecimal, Double.Parse(numberStr), start, this.pos);
         }
     }
 }
