@@ -3,6 +3,8 @@ using System.Collections.Generic;
 
 using Tokens;
 using Lexing;
+using Parsing;
+using Nodes;
 
 namespace InteractiveShell
 {
@@ -17,10 +19,8 @@ namespace InteractiveShell
                 Console.Write(">>> ");
                 string text = Console.ReadLine();
 
-                List<Token> result = Run("<stdin>", text);
-
-                if(result.Count == 1 && result[0].type == Token.TokenType.TokenError) Console.WriteLine(result[0].value);
-                else Console.WriteLine("[" + String.Join<Token>(", ", result.ToArray()) + "]");
+                Node result = Run("<stdin>", text);
+                Console.WriteLine(result);
             }
         }
 
@@ -29,10 +29,16 @@ namespace InteractiveShell
             Console.WriteLine("\nClosing interactive shell...");
         }
 
-        static List<Token> Run(string fileName, string text)
+        static Node Run(string fileName, string text)
         {
             var lexer = new Lexer(fileName, text);
-            return lexer.MakeToken();
+            List<Token> tokens = lexer.MakeToken();
+
+            if(tokens.Count == 1 && tokens[0].type == Token.TokenType.TokenError) return new ErrorNode(tokens[0]);
+
+            var parser = new Parser(tokens);
+            Node syntaxTree = parser.Parse();
+            return syntaxTree;
         }
     }
 }
