@@ -1,5 +1,6 @@
 # Interpreted Test Programming Language
 **I**nterpreted **T**est **P**rogramming **L**anguage also known as **ITPL**.
+
 Current version: alpha 0.0.1
 
 ## About
@@ -12,5 +13,6 @@ that doesn't count).
 ## Compatibility
 It should be able to run on Linux, MacOS and Windows, provided that you have a C# compiler installed in 
 your machine.
+
 Be aware that I have only tested it on MacOS, but I believe the code is simple enough, so it should 
 pose no problem.
