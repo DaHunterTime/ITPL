@@ -42,6 +42,21 @@ namespace Nodes
         }
     }
 
+    public class UnaryOpNode : Node
+    {
+        public Node node;
+
+        public UnaryOpNode(Token opToken, Node node) : base(opToken)
+        {
+            this.node = node;
+        }
+
+        public override string ToString()
+        {
+            return $"({this.token}, {this.node})";
+        }
+    }
+
     public class ErrorNode : Node
     {
         public ErrorNode(Token errorToken) : base(errorToken)
