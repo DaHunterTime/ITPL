@@ -1,4 +1,6 @@
-# **I**nterpreted **T**est **P**rogramming **L**anguage (**ITPL**)
+# Interpreted Test Programming Language
+**I**nterpreted **T**est **P**rogramming **L**anguage also known as **ITPL**.
+Current version: alpha 0.0.1
 
 ## About
 ITPL is just as it's name says, my attempt at creating an interpreted programming language in C#.
