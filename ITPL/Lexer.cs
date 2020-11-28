@@ -95,7 +95,7 @@ namespace Lexing
                 if(this.currentChar == '.')
                 {
                     if(dotCount == 1) break;
-                    dotCount += 1;
+                    dotCount++;
                     numberStr += '.';
                 }
                 else
