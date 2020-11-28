@@ -11,8 +11,7 @@ Currently ITPL is still in it's infancy, that means it does **nothing** (except 
 that doesn't count) yet.
 
 ## Compatibility
-It should be able to run on Linux, MacOS and Windows, provided that you have a C# compiler installed in 
-your machine.
+It should be able to run on Linux, MacOS and Windows, provided that you have a C# compiler for .NET 5.0 installed in your machine.
 
 Be aware that I have only tested it on MacOS, but I believe the code is simple enough, so it should 
 pose no problem.
