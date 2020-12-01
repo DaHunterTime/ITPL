@@ -5,6 +5,8 @@ using Tokens;
 using Lexing;
 using Parsing;
 using Nodes;
+using Interpreting;
+using Types;
 
 namespace InteractiveShell
 {
@@ -38,7 +40,13 @@ namespace InteractiveShell
 
             var parser = new Parser(tokens);
             ParseResult syntaxTree = parser.Parse();
-            return syntaxTree.node;
+
+            if(syntaxTree.error) return syntaxTree.node;
+
+            var interpreter = new Interpreter();
+            var result = new ValueNode(interpreter.Visit(syntaxTree.node));
+
+            return result;
         }
     }
 }
