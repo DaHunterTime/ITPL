@@ -6,13 +6,17 @@ Current version: alpha 0.1.1
 ## About
 ITPL is just as it's name says, my attempt at creating an interpreted programming language in C#.
 
+**Disclaimer**: it probably won't even be finished.
+
 ## Current Features
-Currently ITPL is still in it's infancy, that means it does **nothing** (except print valid tokens, but 
-that doesn't count) yet.
+Currently ITPL is still in it's infancy, it currently does basic arithmetic, but it has no full error 
+handling yet.
 
 Currently implemented:
 * Lexer
 * Parser
+* Interpreter:
+    * Common operations (+, -, *, /)
 
 ## Compatibility
 It should be able to run on Linux, MacOS and Windows, provided that you have a C# compiler for .NET 5.0 installed in your machine.
