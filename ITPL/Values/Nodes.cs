@@ -1,14 +1,20 @@
 using Tokens;
+using Types;
+using Positions;
 
 namespace Nodes
 {
     public class Node
     {
         public Token token;
+        public Position start;
+        public Position end;
 
         public Node(Token token)
         {
             this.token = token;
+            this.start = token.start;
+            this.end = token.end;
         }
 
         public override string ToString()
@@ -34,6 +40,8 @@ namespace Nodes
         {
             this.leftNode = left;
             this.rightNode = right;
+            this.start = left.start;
+            this.end = right.end;
         }
 
         public override string ToString()
@@ -49,6 +57,7 @@ namespace Nodes
         public UnaryOpNode(Token opToken, Node node) : base(opToken)
         {
             this.node = node;
+            this.end = node.end;
         }
 
         public override string ToString()
@@ -67,6 +76,21 @@ namespace Nodes
         public override string ToString()
         {
             return this.token.value.ToString();
+        }
+    }
+
+    public class ValueNode : Node
+    {
+        public ObjectBase value;
+
+        public ValueNode(ObjectBase value) : base(new Token(Token.TokenType.TokenValue, value.start, value.end))
+        {
+            this.value = value;
+        }
+
+        public override string ToString()
+        {
+            return this.value.ToString();
         }
     }
 }

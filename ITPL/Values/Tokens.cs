@@ -17,7 +17,8 @@ namespace Tokens
             TokenLPar,
             TokenRPar,
             TokenError,
-            TokenEOF
+            TokenEOF,
+            TokenValue
         }
 
         public dynamic value;
